@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chill with You: Lo-Fi Story — คู่มือปลดล็อก 100% Achievement</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=IBM+Plex+Sans+Thai:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy: #0d1b33;
+    --navy-2: #142443;
+    --blue: #3b6ec9;
+    --blue-soft: #7fa6e8;
+    --red: #c1443c;
+    --red-soft: #e2726a;
+    --paper: #f4f3ef;
+    --paper-dim: #e3e1da;
+    --ink: #1c2230;
+    --gray: #6b7280;
+    --gray-line: #d7d5cd;
+    --radius: 14px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'IBM Plex Sans Thai','Sora',sans-serif;
+    line-height:1.65;
+  }
+  h1,h2,h3,.display{font-family:'Sora','IBM Plex Sans Thai',sans-serif;}
+  .mono{font-family:'JetBrains Mono',monospace;}
+
+  /* ---------- HERO ---------- */
+  .hero{
+    background:
+      radial-gradient(ellipse at 20% -10%, rgba(59,110,201,.35), transparent 55%),
+      radial-gradient(ellipse at 90% 0%, rgba(193,68,60,.28), transparent 45%),
+      linear-gradient(180deg, var(--navy) 0%, var(--navy-2) 100%);
+    color:var(--paper);
+    padding:72px 24px 56px;
+    position:relative;
+    overflow:hidden;
+  }
+  .hero::after{
+    content:"";
+    position:absolute; inset:0;
+    background-image: repeating-linear-gradient(90deg, rgba(255,255,255,.035) 0 1px, transparent 1px 64px);
+    pointer-events:none;
+  }
+  .hero-inner{max-width:960px; margin:0 auto; position:relative;}
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:8px;
+    font-family:'JetBrains Mono',monospace; font-size:12.5px; letter-spacing:.08em;
+    color:var(--blue-soft); text-transform:uppercase;
+    border:1px solid rgba(127,166,232,.4); padding:6px 12px; border-radius:999px;
+    margin-bottom:22px;
+  }
+  .eyebrow .dot{width:6px;height:6px;border-radius:50%;background:var(--red-soft);}
+  .hero h1{font-size:clamp(30px,4.6vw,50px); font-weight:800; margin:0 0 14px; line-height:1.15;}
+  .hero h1 span{color:var(--red-soft);}
+  .hero p.lead{font-size:17px; color:#c9d2e6; max-width:640px; margin:0 0 30px;}
+  .stat-row{display:flex; flex-wrap:wrap; gap:14px;}
+  .stat{
+    background:rgba(255,255,255,.06);
+    border:1px solid rgba(255,255,255,.12);
+    border-radius:var(--radius);
+    padding:16px 20px; min-width:150px;
+  }
+  .stat .num{font-family:'Sora'; font-size:24px; font-weight:700; color:#fff;}
+  .stat .lbl{font-size:12.5px; color:#a9b4cc; margin-top:2px;}
+
+  /* ---------- NAV ---------- */
+  .navbar{
+    position:sticky; top:0; z-index:50;
+    background:rgba(244,243,239,.92); backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--gray-line);
+  }
+  .navbar-inner{
+    max-width:960px; margin:0 auto; padding:12px 24px;
+    display:flex; gap:4px; overflow-x:auto;
+  }
+  .navbar a{
+    flex:none; font-size:13.5px; font-weight:600; color:var(--gray);
+    text-decoration:none; padding:8px 14px; border-radius:999px; white-space:nowrap;
+    transition:.15s;
+  }
+  .navbar a:hover{background:var(--paper-dim); color:var(--ink);}
+  .navbar a b{color:var(--blue); font-family:'JetBrains Mono'; margin-right:5px;}
+
+  /* ---------- LAYOUT ---------- */
+  main{max-width:960px; margin:0 auto; padding:56px 24px 100px;}
+  section{margin-bottom:64px; scroll-margin-top:70px;}
+  .sec-head{display:flex; align-items:baseline; gap:14px; margin-bottom:8px;}
+  .sec-num{font-family:'JetBrains Mono'; color:var(--red); font-weight:600; font-size:15px;}
+  .sec-head h2{font-size:26px; margin:0; font-weight:800;}
+  .sec-sub{color:var(--gray); font-size:14.5px; margin:0 0 26px; max-width:680px;}
+
+  /* callout */
+  .callout{
+    background:#fff; border:1px solid var(--gray-line); border-left:4px solid var(--blue);
+    border-radius:10px; padding:16px 18px; font-size:14.5px; margin-bottom:26px;
+  }
+  .callout.red{border-left-color:var(--red);}
+  .callout b{color:var(--navy);}
+
+  /* stat cards grid (section 1) */
+  .grid3{display:grid; grid-template-columns:repeat(3,1fr); gap:16px;}
+  @media(max-width:720px){.grid3{grid-template-columns:1fr;}}
+  .card{
+    background:#fff; border:1px solid var(--gray-line); border-radius:var(--radius);
+    padding:22px;
+  }
+  /* progress bar (hero) */
+  .progress-wrap{margin-top:22px; max-width:420px;}
+  .progress-top{display:flex; justify-content:space-between; font-size:12.5px; color:#a9b4cc; margin-bottom:6px; font-family:'JetBrains Mono';}
+  .progress-bar{height:10px; border-radius:999px; background:rgba(255,255,255,.14); overflow:hidden;}
+  .progress-fill{height:100%; width:0%; border-radius:999px; background:linear-gradient(90deg,var(--blue),var(--red)); transition:width .35s ease;}
+
+  /* checklist controls */
+  .check-toolbar{
+    display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap;
+    background:#fff; border:1px solid var(--gray-line); border-radius:12px; padding:12px 16px; margin-bottom:22px;
+  }
+  .check-toolbar .info{font-size:13.5px; color:var(--gray);}
+  .check-toolbar .info b{color:var(--navy); font-family:'JetBrains Mono';}
+  .reset-btn{
+    font-family:'JetBrains Mono'; font-size:12px; border:1px solid var(--gray-line); background:var(--paper);
+    color:var(--gray); padding:7px 12px; border-radius:8px; cursor:pointer; transition:.15s;
+  }
+  .reset-btn:hover{background:var(--red); color:#fff; border-color:var(--red);}
+
+  .ach-check{
+    width:22px; height:22px; border-radius:7px; border:2px solid var(--gray-line);
+    background:#fff; cursor:pointer; flex:none; display:flex; align-items:center; justify-content:center;
+    transition:.15s; appearance:none; -webkit-appearance:none; position:relative;
+  }
+  .ach-check:hover{border-color:var(--blue);}
+  .ach-check:checked{background:var(--blue); border-color:var(--blue);}
+  .ach-check:checked::after{
+    content:"✓"; color:#fff; font-size:14px; font-weight:700; position:absolute; inset:0;
+    display:flex; align-items:center; justify-content:center;
+  }
+  .ach.done{opacity:.55;}
+  .ach.done h4{text-decoration:line-through; text-decoration-color:var(--gray);}
+
+  .card .tag{
+    display:inline-block; font-family:'JetBrains Mono'; font-size:11px; letter-spacing:.05em;
+    color:var(--blue); background:rgba(59,110,201,.09); padding:3px 9px; border-radius:6px;
+    margin-bottom:10px; text-transform:uppercase;
+  }
+  .card h3{margin:0 0 8px; font-size:17px;}
+  .card p{margin:0; font-size:14px; color:#444;}
+
+  /* achievement table/list */
+  .ach-list{display:flex; flex-direction:column; gap:10px;}
+  .ach{
+    background:#fff; border:1px solid var(--gray-line); border-radius:12px;
+    padding:16px 18px; display:flex; gap:14px; align-items:flex-start;
+    transition:opacity .2s;
+  }
+  .ach > .idx{flex:none;}
+  .ach > .body{flex:1; min-width:0;}
+  .ach .idx{
+    width:34px; height:34px; border-radius:9px; background:var(--navy); color:#fff;
+    display:flex; align-items:center; justify-content:center; font-family:'JetBrains Mono'; font-size:13px; font-weight:600;
+  }
+  .ach.red .idx{background:var(--red);}
+  .ach h4{margin:0 0 4px; font-size:15.5px; font-weight:700;}
+  .ach p{margin:0; font-size:13.8px; color:#4b4b4b;}
+  .ach .meta{margin-top:6px; display:flex; gap:8px; flex-wrap:wrap;}
+  .chip{
+    font-size:11.5px; font-family:'JetBrains Mono'; padding:2px 8px; border-radius:999px;
+    background:var(--paper-dim); color:var(--gray);
+  }
+  .chip.warn{background:rgba(193,68,60,.12); color:var(--red);}
+  .chip.info{background:rgba(59,110,201,.12); color:var(--blue);}
+
+  /* timeline for section 3 */
+  .timeline{position:relative; padding-left:28px;}
+  .timeline::before{
+    content:""; position:absolute; left:9px; top:6px; bottom:6px; width:2px;
+    background:linear-gradient(180deg,var(--blue),var(--red));
+  }
+  .tl-item{position:relative; margin-bottom:22px;}
+  .tl-item::before{
+    content:""; position:absolute; left:-28px; top:4px; width:20px; height:20px; border-radius:50%;
+    background:#fff; border:3px solid var(--blue);
+  }
+  .tl-item.final::before{border-color:var(--red);}
+  .tl-item h4{margin:0 0 4px; font-size:15.5px;}
+  .tl-item p{margin:0; font-size:13.8px; color:#4b4b4b;}
+
+  /* steps section 5 */
+  .steps{counter-reset:step;}
+  .step{
+    display:grid; grid-template-columns:40px 1fr; gap:16px;
+    background:#fff; border:1px solid var(--gray-line); border-radius:12px;
+    padding:18px; margin-bottom:12px;
+  }
+  .step::before{
+    counter-increment:step; content:counter(step);
+    width:40px; height:40px; border-radius:10px;
+    background:linear-gradient(135deg,var(--blue),var(--navy)); color:#fff;
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Sora'; font-weight:700; font-size:16px;
+  }
+  .step h4{margin:0 0 4px; font-size:15.5px;}
+  .step p{margin:0; font-size:13.8px; color:#4b4b4b;}
+
+  footer{
+    border-top:1px solid var(--gray-line); padding:28px 24px 60px; max-width:960px; margin:0 auto;
+    font-size:12.8px; color:var(--gray);
+  }
+  footer a{color:var(--blue);}
+  .src{margin-top:8px; display:flex; flex-direction:column; gap:2px;}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow"><span class="dot"></span>FAN-MADE GUIDE · ไม่ใช่คู่มือทางการ</div>
+    <h1>Chill with You: Lo-Fi Story<br><span>คู่มือปลดล็อก 100% Achievement</span></h1>
+    <p class="lead">เกมนี้เป็น "sound novel เพื่อโฟกัสการทำงาน" ไม่ใช่ visual novel แบบมีหลายเส้นทาง — เนื้อเรื่องเดินเส้นเดียวกับซาโตเนะ (Satone) ผ่านตัวจับเวลาโปโมโดโร ดังนั้นคู่มือนี้จะอธิบายตามโครงสร้างจริงของเกม พร้อมชี้จุดที่ต่างจากเกมแนวเลือกเส้นทาง/หลายฉากจบทั่วไป</p>
+    <div class="stat-row">
+      <div class="stat"><div class="num">23 / 23</div><div class="lbl">Achievement ทั้งหมด</div></div>
+      <div class="stat"><div class="num">ง่าย</div><div class="lbl">ระดับความยาก (แต่กินเวลานาน)</div></div>
+      <div class="stat"><div class="num">1 รอบ</div><div class="lbl">ไม่มี New Game+ / ไม่ต้องเล่นซ้ำ</div></div>
+    </div>
+    <div class="progress-wrap">
+      <div class="progress-top"><span>ความคืบหน้าของคุณ</span><span id="progress-label">0 / 23</span></div>
+      <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
+    </div>
+  </div>
+</div>
+
+<nav class="navbar">
+  <div class="navbar-inner">
+    <a href="#s1"><b>01</b>ภาพรวม</a>
+    <a href="#s2"><b>02</b>ถ้วยเนื้อเรื่อง</a>
+    <a href="#s3"><b>03</b>เส้นทางความสัมพันธ์</a>
+    <a href="#s4"><b>04</b>ถ้วยลับ/พลาดง่าย</a>
+    <a href="#s5"><b>05</b>ลำดับขั้นตอนแนะนำ</a>
+    <a href="#checklist-nav" id="checklist-nav-link"><b>✓</b>เช็คลิสต์ของฉัน</a>
+  </div>
+</nav>
+
+<main>
+  <div class="check-toolbar" id="checklist-nav">
+    <div class="info">ติ๊กถูกที่ถ้วยที่ปลดไปแล้วได้เลย ระบบจะจำไว้ให้อัตโนมัติ — ตอนนี้ปลดไปแล้ว <b id="toolbar-count">0 / 23</b></div>
+    <button class="reset-btn" id="reset-checklist">ล้างเช็คลิสต์ทั้งหมด</button>
+  </div>
+
+  <!-- ===================== 1. OVERVIEW ===================== -->
+  <section id="s1">
+    <div class="sec-head"><span class="sec-num">01</span><h2>Overview — ภาพรวม</h2></div>
+    <p class="sec-sub">ข้อมูลพื้นฐานก่อนเริ่มไล่เก็บถ้วยให้ครบ</p>
+
+    <div class="grid3">
+      <div class="card">
+        <span class="tag">ความยาก</span>
+        <h3>ง่ายมาก แต่ "กินเวลา"</h3>
+        <p>ไม่มีถ้วยไหนต้องใช้ทักษะการเล่น ถ้วยส่วนใหญ่ปลดจากการใช้งานฟีเจอร์ปกติของแอป (ตั้งเวลา จดโน้ต ทำ to-do) ตัวที่ยากจริงคือถ้วยสุ่ม (RNG) กับถ้วยที่ต้องสะสมชั่วโมงรวม</p>
+      </div>
+      <div class="card">
+        <span class="tag">เวลาโดยประมาณ</span>
+        <h3>~15 ชม. (เร็วสุด) – 150+ ชม. (เก็บครบจริง)</h3>
+        <p>คอขวดคือถ้วย <b>Workiversary</b> ที่ต้องสะสมเวลาจับเวลาโปโมโดโรรวม 100 ชั่วโมง — ปกติเปิดแอปทิ้งไว้ระหว่างอ่านหนังสือ/ทำงานไปด้วยได้ ไม่ต้องเฝ้าหน้าจอตลอด</p>
+      </div>
+      <div class="card">
+        <span class="tag">จำนวนรอบ</span>
+        <h3>รอบเดียวจบ ไม่มีหลายเซฟ</h3>
+        <p>เนื้อเรื่องเดินหน้าเรื่อยๆ ตามความสัมพันธ์กับซาโตเนะ ไม่มีระบบเลือกเส้นทาง (route) หรือฉากจบหลายแบบแบบเกม otome ทั่วไป จึงไม่ต้องเริ่มเกมใหม่เพื่อเก็บถ้วยที่ "พลาด" จากรอบก่อน</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== 2. STORY / PROGRESSION ===================== -->
+  <section id="s2">
+    <div class="sec-head"><span class="sec-num">02</span><h2>Story / Progression Achievements</h2></div>
+    <p class="sec-sub">ถ้วยที่ปลดอัตโนมัติจากการเล่นและใช้งานฟีเจอร์ต่างๆ ตามปกติ — เก็บครบได้เองถ้าเล่นไปเรื่อยๆ</p>
+
+    <div class="ach-list">
+      <div class="ach" data-id="ach-1"><div class="idx">1</div><div class="body"><h4>Nice to Meet You!</h4><p>จบฉากทูทอเรียลเปิดเกม — ได้อัตโนมัติ พลาดไม่ได้</p><div class="meta"><span class="chip">อัตโนมัติ</span></div><input type="checkbox" class="ach-check" data-ach="ach-1"></div></div>
+
+      <div class="ach" data-id="ach-2"><div class="idx">2</div><div class="body"><h4>Whew… Good Job!</h4><p>ทำเซสชันจับเวลาโปโมโดโร (Timer) แรกให้จบ 1 รอบ</p></div><input type="checkbox" class="ach-check" data-ach="ach-2"></div>
+
+      <div class="ach" data-id="ach-3"><div class="idx">3</div><div class="body"><h4>Small Steps</h4><p>จดโน้ตแรกในแผง Notes ด้านขวาจอ</p></div><input type="checkbox" class="ach-check" data-ach="ach-3"></div>
+
+      <div class="ach" data-id="ach-4"><div class="idx">4</div><div class="body"><h4>Task Complete!</h4><p>เพิ่มรายการใน To-Do แล้วติ๊กว่าทำเสร็จ</p></div><input type="checkbox" class="ach-check" data-ach="ach-4"></div>
+
+      <div class="ach" data-id="ach-5"><div class="idx">5</div><div class="body"><h4>Work with Your Favorite Background!</h4><p>เปลี่ยนฉากหลัง/บรรยากาศครั้งแรกจากเมนูปรับแต่งมุมล่างซ้าย</p></div><input type="checkbox" class="ach-check" data-ach="ach-5"></div>
+
+      <div class="ach" data-id="ach-6"><div class="idx">6</div><div class="body"><h4>See You Later.</h4><p>กดปุ่ม End Call มุมล่างขวาเพื่อจบเซสชัน (ปลดทันทีเมื่อออกด้วยปุ่มนี้)</p></div><input type="checkbox" class="ach-check" data-ach="ach-6"></div>
+
+      <div class="ach" data-id="ach-7"><div class="idx">7</div><div class="body"><h4>You've Got Time to Distract Me?</h4><p>คุยกับซาโตเนะระหว่างช่วงทำงาน (ระหว่าง Timer กำลังนับ)</p></div><input type="checkbox" class="ach-check" data-ach="ach-7"></div>
+
+      <div class="ach" data-id="ach-8"><div class="idx">8</div><div class="body"><h4>Break Time!</h4><p>คุยกับซาโตเนะระหว่างช่วงพัก แทนที่จะเป็นช่วงทำงาน</p></div><input type="checkbox" class="ach-check" data-ach="ach-8"></div>
+
+      <div class="ach" data-id="ach-9"><div class="idx">9</div><div class="body"><h4>Don't Forget to Stay Hydrated</h4><p>ระหว่างพัก บางครั้งซาโตเนะจะพูดถึงการดื่มน้ำ — ตอบกลับบทสนทนานั้น</p></div><input type="checkbox" class="ach-check" data-ach="ach-9"></div>
+
+      <div class="ach" data-id="ach-10"><div class="idx">10</div><div class="body"><h4>How Are You?</h4><p>คุยกับซาโตเนะทันทีหลังจบเซสชันโปโมโดโร ในช่วงเวลาสั้นๆ หลังจบรอบ</p></div><input type="checkbox" class="ach-check" data-ach="ach-10"></div>
+
+      <div class="ach" data-id="ach-11"><div class="idx">11</div><div class="body"><h4>Everyday Moments</h4><p>เปิดปฏิทิน/ไดอารี่ด้านขวาจอเป็นครั้งแรก</p></div><input type="checkbox" class="ach-check" data-ach="ach-11"></div>
+
+      <div class="ach" data-id="ach-12"><div class="idx">12</div><div class="body"><h4>Oh, Your Favorite Song?</h4><p>นำเข้าเพลงของตัวเองผ่านเมนู playlist มุมล่างซ้าย</p></div><input type="checkbox" class="ach-check" data-ach="ach-12"></div>
+
+      <div class="ach" data-id="ach-13"><div class="idx">13</div><div class="body"><h4>Keep It Up!</h4><p>สะสมเวลาจับเวลาโปโมโดโรรวม 10 ชั่วโมง</p><div class="meta"><span class="chip info">สะสมเวลา</span></div></div><input type="checkbox" class="ach-check" data-ach="ach-13"></div>
+
+      <div class="ach" data-id="ach-14"><div class="idx">14</div><div class="body"><h4>Workiversary</h4><p>สะสมเวลาจับเวลาโปโมโดโรรวม 100 ชั่วโมง — ถ้วยที่กินเวลานานที่สุดในเกม เปิดแอปทิ้งไว้ระหว่างอ่านหนังสือ/ทำงานได้เลย</p><div class="meta"><span class="chip info">สะสมเวลา</span><span class="chip warn">ใช้เวลานานสุด</span></div></div><input type="checkbox" class="ach-check" data-ach="ach-14"></div>
+
+      <div class="ach" data-id="ach-22"><div class="idx">15</div><div class="body"><h4>Which Looks Better on Me?</h4><p>ถ้วยเนื้อเรื่อง ปลดจากบทสนทนาพิเศษหลังผ่าน Episode 16 — ดูรายละเอียดเพิ่มเติมในหัวข้อ "เส้นทางความสัมพันธ์" ด้านล่าง</p><div class="meta"><span class="chip">เนื้อเรื่อง</span></div></div><input type="checkbox" class="ach-check" data-ach="ach-22"></div>
+
+      <div class="ach" data-id="ach-23"><div class="idx">16</div><div class="body"><h4>Partner</h4><p>ถ้วยเนื้อเรื่องขั้นสูงสุดที่มีตอนนี้ ปลดเมื่อความผูกพันกับซาโตเนะดำเนินไปถึงจุดหนึ่ง — ดูรายละเอียดเพิ่มเติมในหัวข้อ "เส้นทางความสัมพันธ์" ด้านล่าง</p><div class="meta"><span class="chip warn">ถ้วยจุดสูงสุด</span></div></div><input type="checkbox" class="ach-check" data-ach="ach-23"></div>
+    </div>
+  </section>
+
+  <!-- ===================== 3. "ENDING" / BOND PROGRESSION ===================== -->
+  <section id="s3">
+    <div class="sec-head"><span class="sec-num">03</span><h2>เส้นทางความสัมพันธ์ (แทนที่ระบบ "Ending" แบบเกมทั่วไป)</h2></div>
+    <p class="sec-sub">เกมนี้ไม่มีระบบเลือกรูท/ฉากจบหลายแบบเหมือนเกม otome หรือ visual novel ทั่วไป — ความสัมพันธ์กับซาโตเนะเดินไปทางเดียว ลึกขึ้นเรื่อยๆ ตามจำนวนตอน (Episode) ที่เล่นผ่าน</p>
+
+    <div class="callout">
+      <b>ทำไมไม่มีหัวข้อ "เลือกรูท/ฉากจบ"?</b> — เพราะตัวเกมออกแบบให้ผู้เล่นเป็นคนเดียวที่คุยกับซาโตเนะแบบตรงไปตรงมา (self-insert) ไม่มีทางแยกความสัมพันธ์เป็นสายต่างๆ ถ้วยที่ใกล้เคียง "ฉากจบ/จุดสูงสุด" ที่สุดตอนนี้คือ <b>Partner</b> ซึ่งเป็นถ้วยเนื้อเรื่องที่ปลดเมื่อความผูกพันดำเนินไปถึงจุดหนึ่ง (เกมยังอัปเดตเนื้อหาต่อเนื่อง ดังนั้นอาจมีถ้วยแบบนี้เพิ่มในอนาคต)
+    </div>
+
+    <div class="timeline">
+      <div class="tl-item">
+        <h4>Episode ต้น–กลาง</h4>
+        <p>เล่นเนื้อเรื่องทั่วไปพร้อมใช้ Timer ตามปกติ ระบบจะค่อยๆ ปลดถ้วยกลุ่ม "Heard a special story from Satone" แทรกมาเรื่อยๆ ตามจำนวนชั่วโมง/ตอนที่ผ่าน</p>
+      </div>
+      <div class="tl-item">
+        <h4>หลัง Episode 16</h4>
+        <p>เป็นจุดเช็คพอยท์สำคัญ — ปลดล็อกโอกาสเกิดถ้วยลับ <b>Galactic Railway</b> (บทสนทนาธีมอวกาศ สุ่มขึ้นช่วงพักหลัง Ep.16) และถ้วยเนื้อเรื่อง <b>Which Looks Better on Me?</b></p>
+      </div>
+      <div class="tl-item">
+        <h4>ช่วงกลาง–ปลายเกม</h4>
+        <p>ถ้วยเนื้อเรื่องเพิ่มเติม <b>7-Jul</b> (บทสนทนาธีมจักจั่น/ฤดูร้อน) และ <b>Summertime Overdrive</b> (ถ้วยลับ ผูกกับบทพิเศษ) จะทยอยปลดถ้าเล่นต่อเนื่องและคุยกับซาโตเนะบ่อยๆ ทั้งช่วงทำงานและช่วงพัก</p>
+      </div>
+      <div class="tl-item final">
+        <h4>Partner — จุดสูงสุดของความผูกพัน (ปัจจุบัน)</h4>
+        <p>ถ้วยเนื้อเรื่องที่ลึกที่สุดเท่าที่มีตอนนี้ ปลดเมื่อดำเนินเรื่องและสะสมเวลาทำงานร่วมกับซาโตเนะมากพอ ไม่ต้องเลือกอะไรเป็นพิเศษ แค่เล่นต่อเนื่องจนถึงจุดนี้</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== 4. SECRET & MISSABLE ===================== -->
+  <section id="s4">
+    <div class="sec-head"><span class="sec-num">04</span><h2>Secret & Missable Achievements</h2></div>
+    <p class="sec-sub">ถ้วยกลุ่มนี้เป็นแบบสุ่ม (RNG) หรือทำได้ง่ายแต่คนมักมองข้าม ต้องอาศัยความอดทนมากกว่าเทคนิค</p>
+
+    <div class="ach-list">
+      <div class="ach red" data-id="ach-15"><div class="idx">★</div><div class="body">
+        <h4>Hey, He Can't Talk!</h4>
+        <p>คลิกตุ๊กตาเพนกวิน "โคจัง" (Kou-chan) ที่วางอยู่ในฉากติดกัน 5 ครั้งรวด — ทำได้ทุกเมื่อ ไม่ผูกกับช่วงเวลาไหนเป็นพิเศษ</p>
+        <div class="meta"><span class="chip warn">ซ่อน</span><span class="chip">ทำเองได้ ไม่ต้องรอสุ่ม</span></div>
+      </div><input type="checkbox" class="ach-check" data-ach="ach-15"></div>
+
+      <div class="ach red" data-id="ach-16"><div class="idx">★</div><div class="body">
+        <h4>This is Vintage, Right?</h4>
+        <p>เปิดเกมแล้วมีโอกาสสุ่มที่ซาโตเนะจะใส่หูฟังลายหูแมวตอนเริ่มเกม — ถ้าเจอสกินนี้ตอนเปิดแอป ถ้วยจะปลดทันที</p>
+        <div class="meta"><span class="chip warn">สุ่ม</span><span class="chip">เช็คตอนเปิดเกมทุกครั้ง</span></div>
+      </div><input type="checkbox" class="ach-check" data-ach="ach-16"></div>
+
+      <div class="ach red" data-id="ach-17"><div class="idx">★</div><div class="body">
+        <h4>I'm Not Asleep!</h4>
+        <p>ระหว่างช่วงพัก บางครั้งซาโตเนะจะเผลอหลับเอียงศีรษะ — ให้คุยกับเธอซ้ำอีกครั้งขณะอยู่ในสถานะนี้เพื่อปลดถ้วย</p>
+        <div class="meta"><span class="chip warn">สุ่ม</span><span class="chip">ต้องกดคุยซ้ำ</span></div>
+      </div><input type="checkbox" class="ach-check" data-ach="ach-17"></div>
+
+      <div class="ach red" data-id="ach-18"><div class="idx">★</div><div class="body">
+        <h4>*Ack!*</h4>
+        <p>ระหว่างช่วงทำงาน/สร้างสรรค์ มีโอกาสสุ่มเกิดฉากซาโตเนะดื่มน้ำแล้วสำลัก/ทำหก — ปลดอัตโนมัติ ไม่ต้องกดอะไรเพิ่ม</p>
+        <div class="meta"><span class="chip warn">สุ่ม</span><span class="chip">อัตโนมัติเมื่อเกิดฉาก</span></div>
+      </div><input type="checkbox" class="ach-check" data-ach="ach-18"></div>
+
+      <div class="ach red" data-id="ach-19"><div class="idx">★</div><div class="body">
+        <h4>Galactic Railway</h4>
+        <p>ปลดล็อกเงื่อนไขได้หลังผ่าน Episode 16 — จากนั้นระหว่างช่วงพักจะมีโอกาสสุ่มเกิดบทสนทนาธีมอวกาศ/รถไฟดวงดาว ให้คุยต่อจนจบเพื่อปลดถ้วย</p>
+        <div class="meta"><span class="chip warn">สุ่ม</span><span class="chip info">ต้องผ่าน Ep.16 ก่อน</span></div>
+      </div><input type="checkbox" class="ach-check" data-ach="ach-19"></div>
+
+      <div class="ach red" data-id="ach-20"><div class="idx">★</div><div class="body">
+        <h4>7-Jul</h4>
+        <p>ถ้วยเนื้อเรื่องธีมฤดูร้อน/จักจั่น — เกิดจากบทสนทนาพิเศษระหว่างพักหลังจบเซสชัน คุยต่อเมื่อหัวข้อนี้ปรากฏขึ้น</p>
+        <div class="meta"><span class="chip">เนื้อเรื่องพิเศษ</span></div>
+      </div><input type="checkbox" class="ach-check" data-ach="ach-20"></div>
+
+      <div class="ach red" data-id="ach-21"><div class="idx">★</div><div class="body">
+        <h4>Summertime Overdrive</h4>
+        <p>ถ้วยลับผูกกับบทเนื้อเรื่องพิเศษช่วงกลาง–ปลายเกม เล่นต่อเนื่องและคุยกับซาโตเนะบ่อยๆ ทั้งสองช่วง (ทำงาน/พัก) จะมีโอกาสเจอ</p>
+        <div class="meta"><span class="chip warn">ซ่อน</span><span class="chip">เนื้อเรื่องพิเศษ</span></div>
+      </div><input type="checkbox" class="ach-check" data-ach="ach-21"></div>
+    </div>
+
+    <div class="callout red" style="margin-top:22px;">
+      <b>เคล็ดลับลดเวลารอสุ่ม:</b> ถ้วยกลุ่มนี้ผูกกับ "การเปิดแอปบ่อยๆ" และ "คุยกับซาโตเนะทุกครั้งที่มีตัวเลือกให้คุยได้ ทั้งช่วงทำงานและช่วงพัก" มากกว่าจำนวนชั่วโมงสะสม ดังนั้นระหว่างรอสะสม 100 ชม. เพื่อปลด Workiversary ให้เปิด-ปิดเซสชันบ่อยๆ และอย่าข้ามบทสนทนา จะช่วยให้เจอฉากสุ่มเหล่านี้เร็วขึ้นตามธรรมชาติ
+    </div>
+  </section>
+
+  <!-- ===================== 5. STEP BY STEP ===================== -->
+  <section id="s5">
+    <div class="sec-head"><span class="sec-num">05</span><h2>Step-by-step Route Guide</h2></div>
+    <p class="sec-sub">ลำดับการเล่นที่แนะนำเพื่อเก็บครบ 100% อย่างมีประสิทธิภาพที่สุด โดยใช้เวลารอ 100 ชม. ให้เกิดประโยชน์สูงสุด</p>
+
+    <div class="steps">
+      <div class="step">
+        <div><h4>เริ่มเกมและปลดถ้วยเปิดตัว</h4>
+        <p>เล่นทูทอเรียล → ตั้งค่าฉากหลัง/เพลงนำเข้าของตัวเองครั้งแรก → จดโน้ต 1 อัน → เพิ่ม to-do แล้วติ๊กเสร็จ 1 อัน → เปิดปฏิทินดูครั้งแรก ถ้วยกลุ่มนี้ 6-7 อันจะหมดภายใน 10 นาทีแรก</p></div>
+      </div>
+      <div class="step">
+        <div><h4>เริ่มเซสชันโปโมโดโรแรกและคุยให้ครบทุกจังหวะ</h4>
+        <p>ตั้งเวลาแล้วปล่อยให้ทำงานจนจบ 1 รอบ ระหว่างรอบให้ลองกดคุยกับซาโตเนะ (ปลด "You've Got Time to Distract Me?"), จบรอบให้รีบคุยทันที (ปลด "How Are You?"), เข้าสู่ช่วงพักแล้วคุยอีกครั้ง (ปลด "Break Time!") แล้วกด End Call ปิดเซสชัน (ปลด "See You Later.")</p></div>
+      </div>
+      <div class="step">
+        <div><h4>ปลด Hey, He Can't Talk! ทันที</h4>
+        <p>คลิกตุ๊กตาเพนกวินโคจัง 5 ครั้งติดกัน ทำได้ตั้งแต่ช่วงแรกๆ ไม่ต้องรอเงื่อนไขอะไร ตัดถ้วยนี้ทิ้งไปได้เลยตั้งแต่ต้น</p></div>
+      </div>
+      <div class="step">
+        <div><h4>ปล่อย Timer วนไปเรื่อยๆ ระหว่างอ่านหนังสือ/ทำงานจริง</h4>
+        <p>นี่คือช่วงที่กินเวลาที่สุด (มุ่งสู่ 10 ชม. แล้ว 100 ชม. สำหรับ Keep It Up! และ Workiversary) แนะนำเปิดแอปควบคู่กับตารางเรียน/อ่านหนังสือสอบจริง จะได้ไม่รู้สึกว่าเสียเวลาเปล่า และทุกครั้งที่เปิดแอปใหม่ ให้สังเกตหน้าจอเริ่มเกม เผื่อเจอสกินหูฟังแมวสุ่ม (This is Vintage, Right?)</p></div>
+      </div>
+      <div class="step">
+        <div><h4>ไล่เก็บถ้วยเนื้อเรื่องเมื่อผ่าน Episode 16</h4>
+        <p>หลังผ่าน Ep.16 ให้คุยกับซาโตเนะทุกครั้งที่มีตัวเลือกทั้งช่วงทำงานและพัก เพื่อไม่พลาดบทสนทนาสุ่ม Galactic Railway และถ้วยเนื้อเรื่อง Which Looks Better on Me?</p></div>
+      </div>
+      <div class="step">
+        <div><h4>สังเกตช่วงพักเป็นพิเศษเพื่อจับฉากสุ่ม</h4>
+        <p>ระหว่างพัก ให้เช็คว่าเผลอหลับหรือเปล่า (คุยซ้ำเพื่อปลด I'm Not Asleep!) และตอบรับเมื่อมีพรอมป์เรื่องดื่มน้ำ (Don't Forget to Stay Hydrated) ส่วน *Ack!* จะเกิดเองอัตโนมัติช่วงทำงาน ไม่ต้องทำอะไรเพิ่ม</p></div>
+      </div>
+      <div class="step">
+        <div><h4>เล่นเนื้อเรื่องต่อจนถึงช่วงกลาง–ปลายเกม</h4>
+        <p>เก็บ 7-Jul และ Summertime Overdrive ระหว่างทาง ทั้งสองผูกกับบทพิเศษที่มาแทรกเองเมื่อเล่นต่อเนื่องและคุยบ่อยๆ ไม่ต้องบังคับหาเงื่อนไขซับซ้อน</p></div>
+      </div>
+      <div class="step">
+        <div><h4>ปิดท้ายด้วย Partner และ Workiversary</h4>
+        <p>สองถ้วยนี้มักปลดช้าสุดเพราะต้องใช้เวลาสะสมมาก — เมื่อสะสมครบ 100 ชม. และเนื้อเรื่องดำเนินไปพร้อมกัน ถ้วยทั้งสองจะปลดเป็นบทปิดของการเก็บ 100% พอดี</p></div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <p>คู่มือนี้จัดทำโดยแฟนเกม อ้างอิงข้อมูลจากคอมมูนิตี้ Steam ณ ช่วงกลางปี 2026 เกมยังมีการอัปเดตเนื้อหาต่อเนื่อง (ล่าสุดมีคอลแลบกับ "Memory of Memorie: A Chill Story") เงื่อนไขถ้วยบางอันอาจเปลี่ยนแปลงหรือมีถ้วยใหม่เพิ่มในอนาคต</p>
+  <div class="src">
+    แหล่งอ้างอิง:
+    <a href="https://steamcommunity.com/stats/3548580/achievements" target="_blank">Steam Community — Official Achievement List</a>
+    <a href="https://steamhunters.com/apps/3548580/achievements" target="_blank">Steam Hunters — Achievement Stats</a>
+    <a href="https://gamefaqs.gamespot.com/pc/530736-chill-with-you-lo-fi-story/achievements" target="_blank">GameFAQs — Achievement Guide</a>
+  </div>
+</footer>
+
+
+<script>
+(function(){
+  const TOTAL = document.querySelectorAll('.ach-check').length;
+  const STORAGE_KEY = 'chill-with-you-checklist';
+  let state = {};
+
+  function updateUI(){
+    const doneCount = Object.values(state).filter(Boolean).length;
+    document.getElementById('progress-label').textContent = doneCount + ' / ' + TOTAL;
+    document.getElementById('progress-fill').style.width = (TOTAL ? (doneCount/TOTAL*100) : 0) + '%';
+    document.getElementById('toolbar-count').textContent = doneCount + ' / ' + TOTAL;
+  }
+
+  function applyStateToDOM(){
+    document.querySelectorAll('.ach-check').forEach(cb=>{
+      const id = cb.getAttribute('data-ach');
+      const checked = !!state[id];
+      cb.checked = checked;
+      cb.closest('.ach').classList.toggle('done', checked);
+    });
+    updateUI();
+  }
+
+  function loadState(){
+    try{
+      const raw = localStorage.getItem(STORAGE_KEY);
+      if(raw){ state = JSON.parse(raw); }
+    }catch(err){
+      // localStorage ใช้ไม่ได้ (เช่น เปิดไฟล์แบบ file:// ในบางเบราว์เซอร์) — เริ่มเช็คลิสต์ใหม่
+      state = {};
+    }
+    applyStateToDOM();
+  }
+
+  function saveState(){
+    try{
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+    }catch(err){
+      console.error('ไม่สามารถบันทึกเช็คลิสต์ได้:', err);
+    }
+  }
+
+  document.querySelectorAll('.ach-check').forEach(cb=>{
+    cb.addEventListener('change', ()=>{
+      const id = cb.getAttribute('data-ach');
+      state[id] = cb.checked;
+      cb.closest('.ach').classList.toggle('done', cb.checked);
+      updateUI();
+      saveState();
+    });
+  });
+
+  document.getElementById('reset-checklist').addEventListener('click', ()=>{
+    if(!confirm('ล้างเช็คลิสต์ทั้งหมดใช่ไหม? การกระทำนี้ย้อนกลับไม่ได้')) return;
+    state = {};
+    applyStateToDOM();
+    saveState();
+  });
+
+  loadState();
+})();
+</script>
+</body>
+</html>
